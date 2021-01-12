@@ -2,6 +2,12 @@
 
 ## Development
 
+## 1.1.5
+
+- Add 2020 data and make targets.
+- Update README etc.
+- Add repository logo.
+
 ## 1.1.4
 
 - Add "Familienname" to the list of non-names (which showed up as a name in Spandau 2017). Thanks to @graste and @xilefluap!
