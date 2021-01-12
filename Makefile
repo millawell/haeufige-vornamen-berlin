@@ -192,6 +192,29 @@ clean-data: 2012 2013 2014 2015 2016 2017 2018
 	@echo "... remove non-names"
 	@. bin/remove_non_names.sh ${TARGET}/2019
 
+2020:
+	@echo "Prepare 2020 data" 
+	@echo "... set up target folder"
+	@rm -rf ${TARGET}/2020
+	@mkdir -p ${TARGET}/2020
+	@echo "... copy and rename source files"
+	$(call copy_csv_and_pdf,2020,"Charlottenburg-Wilmersdorf\ von\ Berlin\ Vornamen\ 2020","charlottenburg-wilmersdorf")
+	$(call copy_csv_and_pdf,2020,"Friedrichshain-Kreuzberg\ von\ Berlin\ Vornamen\ 2020","friedrichshain-kreuzberg")
+	$(call copy_csv_and_pdf,2020,"Lichtenberg\ von\ Berlin\ Vornamen\ 2020","lichtenberg")
+	$(call copy_csv_and_pdf,2020,"Marzahn-Hellersdorf\ von\ Berlin\ Vornamen\ 2020","marzahn-hellersdorf")
+	$(call copy_csv_and_pdf,2020,"Mitte\ von\ Berlin\ Vornamen\ 2020","mitte")
+	$(call copy_csv_and_pdf,2020,"Neukölln\ von\ Berlin\ Vornamen\ 2020","neukoelln")
+	$(call copy_csv_and_pdf,2020,"Pankow\ von\ Berlin\ Vornamen\ 2020","pankow")
+	$(call copy_csv_and_pdf,2020,"Reinickendorf\ von\ Berlin\ Vornamen\ 2020","reinickendorf")
+	$(call copy_csv_and_pdf,2020,"Spandau\ von\ Berlin\ Vornamen\ 2020","spandau")
+	$(call copy_csv_and_pdf,2020,"Steglitz-Zehlendorf\ von\ Berlin\ Vornamen\ 2020","steglitz-zehlendorf")
+	$(call copy_csv_and_pdf,2020,"Tempelhof-Schöneberg\ von\ Berlin\ Vornamen\ 2020","tempelhof-schoeneberg")
+	$(call copy_csv_and_pdf,2020,"Treptow-Köpenick\ von\ Berlin\ Vornamen\ 2020","treptow-koepenick")
+	@echo "... restructure CSV"
+	@. bin/convert2017.sh ${TARGET}/2020
+	@echo "... remove non-names"
+	@. bin/remove_non_names.sh ${TARGET}/2020
+
 create-2018:
 	@echo "Create 2018 dataset"
 	@. bin/create_dataset.sh 2018
@@ -203,4 +226,9 @@ create-2019:
 	@. bin/create_dataset.sh 2019
 	@echo
 	@echo "... done"
-	
+
+create-2020:
+	@echo "Create 2020 dataset"
+	@. bin/create_dataset.sh 2020
+	@echo
+	@echo "... done"
