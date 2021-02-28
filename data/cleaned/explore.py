@@ -69,6 +69,8 @@ st.write(
 name = st.text_input('Search for name in your current selection', '')
 
 found_names = view[view.vorname==name]
+found_names_in_all = names[names.vorname==name]
+
 
 if len(found_names)==1:
     
@@ -88,7 +90,7 @@ if len(found_names)==1:
     st.pyplot(fig)
 
     fig, ax = plt.subplots(figsize=(10,4))
-    year_counts = names.groupby('year').sum().anzahl
+    year_counts = found_names_in_all.groupby('year').sum().anzahl
     year_counts.plot(ax=ax,c=cm[0])
     for year_ in year:
         ax.plot(year_, year_counts[year_], 's', c=cm[1])
@@ -97,7 +99,7 @@ if len(found_names)==1:
     st.pyplot(fig)
 
     fig, ax = plt.subplots(figsize=(10,4))
-    names.groupby('area').sum().anzahl.sort_index().plot(
+    found_names_in_all.groupby('area').sum().anzahl.sort_index().plot(
         kind='bar',
         ax=ax,
         color=[cm[1] if area_ in area else cm[0] for area_ in areas]
