@@ -77,11 +77,12 @@ if len(found_names)==1:
     found_name = found_names.iloc[0].vorname
     found_cnt = found_names.anzahl.sum()
     view_cnts = sorted(view.groupby("vorname").sum().anzahl)[::-1]
+    view_cnts_unique = sorted(view.groupby("vorname").sum().anzahl.unique())[::-1]
     st.write(f"""## You found one name: {found_name}! """)
     
     fig, ax = plt.subplots(figsize=(10,4))
 
-    st.write(f"""It is on position {view_cnts.index(found_cnt)+1} of {len(view_cnts)}.""")
+    st.write(f"""It is on position {view_cnts_unique.index(found_cnt)+1} of {len(view_cnts_unique)}.""")
     n, _, _ = ax.hist(view_cnts,np.arange(0, max(view_cnts)+1, 10), color=cm[0])
     ax.vlines(found_cnt, 0, max(n),color=cm[1])
     ax.set_yscale('log')
